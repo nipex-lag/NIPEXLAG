@@ -3,19 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0c10">
 <title>NIPEX LAG • Daily Key</title>
 
 <style>
 :root{
-    --bg:#07090d;
-    --card:#11151c;
-    --line:#242b36;
-    --text:#f5f7fa;
-    --muted:#87909d;
+    --bg:#0a0c10;
+    --card:#12161d;
+    --field:#0b0e13;
+    --line:#222934;
+    --text:#f2f5f8;
+    --muted:#7d8795;
     --green:#00e887;
-    --green2:#00b96b;
-    --blue:#1597ff;
-    --red:#ff4d5e;
+    --green-ink:#00200f;
+    --blue:#3aa0ff;
+    --red:#ff5a69;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,"Courier New",monospace;
 }
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}
@@ -24,147 +27,139 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:18px;
+    padding:20px;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    background:
+        radial-gradient(600px 320px at 50% 0%,rgba(0,232,135,.07),transparent 70%),
+        var(--bg);
 }
-.container{width:100%;max-width:420px}
+.container{width:100%;max-width:400px}
 #mainContainer,#bypassContainer{display:none}
 
 .card,.error-card{
-    position:relative;
-    overflow:hidden;
-    background:linear-gradient(145deg,#151a22,#0d1117);
+    background:var(--card);
     border:1px solid var(--line);
-    border-radius:26px;
-    padding:28px 22px 22px;
-    box-shadow:0 24px 70px rgba(0,0,0,.55);
+    border-radius:22px;
+    padding:26px 22px 22px;
+    box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 30px 60px -20px rgba(0,0,0,.7);
 }
-.card:before{
-    content:"";
-    position:absolute;
-    width:170px;height:170px;
-    right:-80px;top:-80px;
-    border-radius:50%;
-    background:rgba(0,232,135,.08);
-    filter:blur(5px);
-}
-.brand{
-    position:relative;
-    display:flex;
-    align-items:center;
-    gap:13px;
-    margin-bottom:25px;
-}
+
+/* Header */
+.brand{display:flex;align-items:center;gap:14px;margin-bottom:22px}
 .logo{
-    width:54px;height:54px;
-    border-radius:16px;
-    border:1px solid rgba(0,232,135,.55);
+    width:52px;height:52px;flex:none;
+    border-radius:15px;
+    border:1px solid var(--line);
+    background:#0b0e13;
     overflow:hidden;
-    background:#090c10;
-    flex:none;
+    display:grid;place-items:center;
+    color:var(--green);font-weight:800;font-size:20px;
 }
 .logo img{width:100%;height:100%;object-fit:cover;display:block}
-.brand-title{font-size:22px;font-weight:850;letter-spacing:.3px}
+.brand-title{font-size:20px;font-weight:750;letter-spacing:.2px;line-height:1.2}
 .badge{
-    display:inline-block;
-    margin-top:4px;
-    padding:4px 8px;
-    border-radius:7px;
-    background:rgba(0,232,135,.10);
+    display:inline-block;margin-top:5px;
+    padding:3px 9px;border-radius:99px;
+    background:rgba(0,232,135,.1);
     color:var(--green);
-    border:1px solid rgba(0,232,135,.22);
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:1px;
+    font-size:11px;font-weight:650;
 }
-.subtitle{color:var(--muted);font-size:13px;margin-bottom:24px}
+.subtitle{color:var(--muted);font-size:13px;line-height:1.55;margin-bottom:22px}
 
-.label{
-    color:#68727f;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:1.5px;
-    margin:0 0 8px 2px;
-}
+/* Fields */
+.label{color:var(--muted);font-size:12px;font-weight:600;margin:0 0 7px 2px}
 .ip{
-    background:#0a0d12;
+    background:var(--field);
     border:1px solid var(--line);
-    border-radius:13px;
+    border-radius:12px;
     padding:13px 14px;
-    color:var(--green);
-    font-family:"Courier New",monospace;
+    color:var(--text);
+    font-family:var(--mono);
     font-size:15px;
-    font-weight:700;
-    margin-bottom:19px;
+    margin-bottom:18px;
 }
 .key-box{
-    background:#080b10;
-    border:1px solid rgba(0,232,135,.35);
-    border-radius:17px;
-    padding:20px 12px;
+    background:var(--field);
+    border:1px solid rgba(0,232,135,.32);
+    border-radius:14px;
+    padding:20px 10px;
     text-align:center;
-    box-shadow:inset 0 0 25px rgba(0,232,135,.035);
+    box-shadow:0 0 0 4px rgba(0,232,135,.04);
 }
 #finalKey{
+    display:block;
     color:var(--green);
-    font-family:"Courier New",monospace;
-    font-size:21px;
-    font-weight:800;
-    letter-spacing:1.5px;
-    word-break:break-all;
+    font-family:var(--mono);
+    font-size:clamp(12px,4vw,18px);
+    font-weight:700;
+    letter-spacing:.04em;
+    white-space:nowrap;
 }
+
+/* Buttons */
 .btn{
     width:100%;
     border:0;
-    border-radius:13px;
+    border-radius:12px;
     padding:15px;
     margin-top:12px;
-    font-size:14px;
-    font-weight:850;
+    font:inherit;
+    font-size:15px;
+    font-weight:700;
     cursor:pointer;
-    transition:.18s ease;
+    transition:background .18s ease,transform .12s ease,border-color .18s ease;
 }
-.btn:active{transform:scale(.98)}
-.copy{background:var(--green);color:#001b10}
-.copy:hover{background:#25f29c}
-.telegram{background:var(--blue);color:#fff}
-.telegram:hover{background:#39a8ff}
+.btn:active{transform:scale(.985)}
+.btn:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.copy{background:var(--green);color:var(--green-ink);margin-top:20px}
+.copy:hover{background:#2af2a0}
+.copy.done{background:#e8fff5}
+.telegram{background:transparent;color:var(--blue);border:1px solid rgba(58,160,255,.4)}
+.telegram:hover{background:rgba(58,160,255,.08);border-color:var(--blue)}
+
+/* Status */
 .status{
-    text-align:center;
+    display:flex;align-items:center;justify-content:center;gap:8px;
     margin-top:18px;
-    color:#68727f;
-    font-size:11px;
-    letter-spacing:1px;
+    color:var(--muted);font-size:12px;
 }
+.status:before{
+    content:"";width:7px;height:7px;border-radius:50%;
+    background:var(--muted);
+}
+.status[data-state="ok"]:before{background:var(--green)}
+.status[data-state="busy"]:before{background:#f5b94a}
+.status[data-state="error"]:before{background:var(--red)}
 #error{
-    display:none;
-    text-align:center;
-    color:var(--red);
-    font-size:12px;
-    line-height:1.5;
-    margin-top:14px;
+    display:none;text-align:center;
+    color:var(--red);font-size:12px;line-height:1.5;margin-top:12px;
 }
 .footer{
-    text-align:center;
-    color:#39414d;
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:2px;
-    margin-top:15px;
+    text-align:center;color:#434c59;
+    font-size:11px;margin-top:16px;
 }
-.error-card{
-    text-align:center;
-    padding:38px 25px;
-    background:linear-gradient(145deg,#1a1013,#110b0d);
-    border-color:#402028;
+
+/* Bypass screen */
+.error-card{text-align:center;padding:36px 24px}
+.error-icon{
+    width:52px;height:52px;margin:0 auto 16px;
+    border-radius:50%;
+    display:grid;place-items:center;
+    background:rgba(255,90,105,.1);
+    border:1px solid rgba(255,90,105,.3);
+    color:var(--red);font-size:24px;font-weight:700;
 }
-.error-icon{font-size:46px;margin-bottom:15px}
-.error-title{color:var(--red);font-size:23px;font-weight:850}
-.error-text{color:#8e7f83;font-size:13px;line-height:1.6;margin:12px 0 22px}
-.btn-red{background:var(--red);color:#fff}
+.error-title{color:var(--text);font-size:21px;font-weight:750}
+.error-text{color:var(--muted);font-size:13px;line-height:1.6;margin:10px 0 20px}
+.btn-red{background:var(--red);color:#fff;margin-top:0}
+.btn-red:hover{background:#ff7480}
+
 @media(max-width:350px){
-    .card{padding:23px 17px}
-    #finalKey{font-size:17px}
+    .card{padding:22px 16px 18px}
+}
+@media(prefers-reduced-motion:reduce){
+    .btn{transition:none}
 }
 </style>
 </head>
@@ -177,28 +172,28 @@ body{
 
     <div class="brand">
         <div class="logo">
-            <img src="./assets/logo.png" alt="NIPEX">
+            <img src="./assets/logo.png" alt="NIPEX" onerror="this.remove();this.parentNode.textContent='N'">
         </div>
         <div>
             <div class="brand-title">NIPEX LAG</div>
-            <div class="badge">DAILY LICENSE</div>
+            <div class="badge">Daily license</div>
         </div>
     </div>
 
-    <div class="subtitle">Secure license key generator • Reset every day at 6:00 AM IST</div>
+    <div class="subtitle">Secure license key generator.<br>Resets every day at 6:00 AM IST.</div>
 
-    <div class="label">YOUR PUBLIC IP</div>
+    <div class="label">Your public IP</div>
     <div class="ip" id="ipAddress">CONNECTING...</div>
 
-    <div class="label">YOUR LICENSE KEY</div>
+    <div class="label">Your license key</div>
     <div class="key-box">
         <span id="finalKey">SECURE FETCHING...</span>
     </div>
 
-    <button class="btn copy" id="copyBtn" onclick="copyKey()">COPY LICENSE KEY</button>
-    <button class="btn telegram" onclick="openTelegram()">JOIN TELEGRAM</button>
+    <button class="btn copy" id="copyBtn" onclick="copyKey()">Copy license key</button>
+    <button class="btn telegram" onclick="openTelegram()">Join Telegram</button>
 
-    <div class="status" id="status">SYSTEM: CONNECTING</div>
+    <div class="status" id="status" data-state="busy">Connecting…</div>
     <div id="error">Unable to connect to IP service.<br>Please check your internet connection.</div>
 
 </div>
@@ -206,17 +201,17 @@ body{
 
 <div id="bypassContainer">
 <div class="error-card">
-    <div class="error-icon">🚫</div>
-    <div class="error-title">Bypass Detected</div>
+    <div class="error-icon">!</div>
+    <div class="error-title">Bypass detected</div>
     <div class="error-text">
         Direct access is not allowed.<br>
         Please open this generator through the official steps.
     </div>
-    <button class="btn btn-red" onclick="location.href='steps.html'">RETURN TO STEPS</button>
+    <button class="btn btn-red" onclick="location.href='steps.html'">Return to steps</button>
 </div>
 </div>
 
-<div class="footer">NIPEX LAG SECURITY SYSTEM</div>
+<div class="footer">NIPEX LAG Security System</div>
 </div>
 
 <script>
@@ -349,19 +344,19 @@ async function generateLockedKey(){
 
     keyEl.innerText="SECURE FETCHING...";
     ipEl.innerText="CONNECTING...";
-    statusEl.innerText="SYSTEM: GETTING IP";
+    statusEl.innerText="Getting your IP…";statusEl.dataset.state="busy";
     errorEl.style.display="none";
 
     try{
         const ip=await getPublicIP();
         ipEl.innerText=ip;
         keyEl.innerText=generateKeyFromIP(ip);
-        statusEl.innerText="SYSTEM: NIPEX LAG • KEY READY";
+        statusEl.innerText="Key ready";statusEl.dataset.state="ok";
     }catch(e){
         console.error(e);
         ipEl.innerText="UNAVAILABLE";
         keyEl.innerText="CONNECT TO INTERNET";
-        statusEl.innerText="SYSTEM: OFFLINE";
+        statusEl.innerText="Offline";statusEl.dataset.state="error";
         errorEl.style.display="block";
     }
 }
@@ -380,8 +375,8 @@ async function copyKey(){
     try{
         await navigator.clipboard.writeText(key);
         const btn=document.getElementById("copyBtn");
-        btn.innerText="COPIED SUCCESSFULLY ✓";
-        setTimeout(()=>btn.innerText="COPY LICENSE KEY",1800);
+        btn.innerText="Copied ✓";btn.classList.add("done");
+        setTimeout(()=>{btn.innerText="Copy license key";btn.classList.remove("done")},1800);
     }catch(e){
         alert("Copy failed. Please copy the key manually.");
     }
