@@ -3,390 +3,269 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0c10">
 <title>NIPEX LAG • Daily Key</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-    --bg:#0a0c10;
-    --card:#12161d;
-    --field:#0b0e13;
-    --line:#222934;
-    --text:#f2f5f8;
-    --muted:#7d8795;
-    --green:#00e887;
-    --green-ink:#00200f;
-    --blue:#3aa0ff;
-    --red:#ff5a69;
-    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,"Courier New",monospace;
+    --bg:#07060f; --card:#100e1c; --field:#0b0a15; --line:#262240;
+    --text:#f1efff; --muted:#8c86a8; --label:#b7b1d6;
+    --purple:#8b7cff; --cyan:#22d3ee; --red:#ff6b7a;
 }
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}
+html,body{margin:0;min-height:100%}
 body{
     min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    -webkit-font-smoothing:antialiased;
+    display:flex;justify-content:center;align-items:center;
+    padding:24px 20px;
     background:
-        radial-gradient(600px 320px at 50% 0%,rgba(0,232,135,.07),transparent 70%),
+        radial-gradient(520px 420px at 50% -60px, rgba(63,46,154,.45), transparent 70%),
+        radial-gradient(420px 360px at 100% 100%, rgba(14,116,144,.28), transparent 70%),
         var(--bg);
-}
-.container{width:100%;max-width:400px}
-#mainContainer,#bypassContainer{display:none}
-
-.card,.error-card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:22px;
-    padding:26px 22px 22px;
-    box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 30px 60px -20px rgba(0,0,0,.7);
-}
-
-/* Header */
-.brand{display:flex;align-items:center;gap:14px;margin-bottom:22px}
-.logo{
-    width:52px;height:52px;flex:none;
-    border-radius:15px;
-    border:1px solid var(--line);
-    background:#0b0e13;
-    overflow:hidden;
-    display:grid;place-items:center;
-    color:var(--green);font-weight:800;font-size:20px;
-}
-.logo img{width:100%;height:100%;object-fit:cover;display:block}
-.brand-title{font-size:20px;font-weight:750;letter-spacing:.2px;line-height:1.2}
-.badge{
-    display:inline-block;margin-top:5px;
-    padding:3px 9px;border-radius:99px;
-    background:rgba(0,232,135,.1);
-    color:var(--green);
-    font-size:11px;font-weight:650;
-}
-.subtitle{color:var(--muted);font-size:13px;line-height:1.55;margin-bottom:22px}
-
-/* Fields */
-.label{color:var(--muted);font-size:12px;font-weight:600;margin:0 0 7px 2px}
-.ip{
-    background:var(--field);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:13px 14px;
     color:var(--text);
-    font-family:var(--mono);
-    font-size:15px;
-    margin-bottom:18px;
+    font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
 }
-.key-box{
-    background:var(--field);
-    border:1px solid rgba(0,232,135,.32);
-    border-radius:14px;
-    padding:20px 10px;
-    text-align:center;
-    box-shadow:0 0 0 4px rgba(0,232,135,.04);
-}
-#finalKey{
-    display:block;
-    color:var(--green);
-    font-family:var(--mono);
-    font-size:clamp(12px,4vw,18px);
-    font-weight:700;
-    letter-spacing:.04em;
-    white-space:nowrap;
-}
+.container{width:100%;max-width:420px;text-align:center;animation:fadeUp .6s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-/* Buttons */
+.logo{
+    width:96px;height:96px;border-radius:50%;margin:0 auto 20px;
+    box-shadow:0 0 0 1px rgba(34,211,238,.25),0 0 44px rgba(34,211,238,.35);
+}
+.logo img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;background:var(--field)}
+h1{margin:0 0 6px;font-size:30px;font-weight:800;letter-spacing:.14em}
+.tagline{margin:0 0 28px;color:var(--muted);font-size:14px;line-height:1.5}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;text-align:left}
+.label{margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--label)}
+.field{
+    background:var(--field);border:1px solid var(--line);border-radius:16px;
+    padding:15px 16px;margin-bottom:20px;
+    font-family:ui-monospace,Menlo,Consolas,"Courier New",monospace;
+    font-size:15px;word-break:break-all;
+}
+.field.key{color:var(--cyan);font-size:22px;font-weight:700;text-align:center;letter-spacing:.06em;margin-bottom:12px}
+.reset{margin:0 0 20px;text-align:center;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.reset b{color:var(--label);font-variant-numeric:tabular-nums}
+
 .btn{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    padding:15px;
-    margin-top:12px;
-    font:inherit;
-    font-size:15px;
-    font-weight:700;
-    cursor:pointer;
-    transition:background .18s ease,transform .12s ease,border-color .18s ease;
+    width:100%;height:54px;margin-top:12px;border:0;border-radius:16px;cursor:pointer;
+    font-family:inherit;font-size:14px;font-weight:800;letter-spacing:.18em;
+    transition:transform .2s ease,opacity .2s ease;
 }
-.btn:active{transform:scale(.985)}
-.btn:focus-visible{outline:2px solid var(--green);outline-offset:3px}
-.copy{background:var(--green);color:var(--green-ink);margin-top:20px}
-.copy:hover{background:#2af2a0}
-.copy.done{background:#e8fff5}
-.telegram{background:transparent;color:var(--blue);border:1px solid rgba(58,160,255,.4)}
-.telegram:hover{background:rgba(58,160,255,.08);border-color:var(--blue)}
+.btn:first-of-type{margin-top:0}
+.btn:active{transform:scale(.99)}
+.copy{background:linear-gradient(90deg,var(--purple),var(--cyan));color:#0a0a14}
+.telegram{background:var(--card);color:var(--text);border:1px solid var(--line)}
+.btn-red{background:linear-gradient(90deg,#ff6b7a,#ff9a6b);color:#1a0508}
 
-/* Status */
-.status{
-    display:flex;align-items:center;justify-content:center;gap:8px;
-    margin-top:18px;
-    color:var(--muted);font-size:12px;
-}
-.status:before{
-    content:"";width:7px;height:7px;border-radius:50%;
-    background:var(--muted);
-}
-.status[data-state="ok"]:before{background:var(--green)}
-.status[data-state="busy"]:before{background:#f5b94a}
-.status[data-state="error"]:before{background:var(--red)}
-#error{
-    display:none;text-align:center;
-    color:var(--red);font-size:12px;line-height:1.5;margin-top:12px;
-}
-.footer{
-    text-align:center;color:#434c59;
-    font-size:11px;margin-top:16px;
-}
+.status{margin-top:18px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--muted)}
+#error{display:none;margin-top:14px;text-align:center;font-size:13px;line-height:1.5;color:var(--red)}
 
-/* Bypass screen */
-.error-card{text-align:center;padding:36px 24px}
-.error-icon{
-    width:52px;height:52px;margin:0 auto 16px;
-    border-radius:50%;
-    display:grid;place-items:center;
-    background:rgba(255,90,105,.1);
-    border:1px solid rgba(255,90,105,.3);
-    color:var(--red);font-size:24px;font-weight:700;
-}
-.error-title{color:var(--text);font-size:21px;font-weight:750}
-.error-text{color:var(--muted);font-size:13px;line-height:1.6;margin:10px 0 20px}
-.btn-red{background:var(--red);color:#fff;margin-top:0}
-.btn-red:hover{background:#ff7480}
+#mainContainer,#bypassContainer{display:none}
+.error-card{background:var(--card);border:1px solid rgba(255,107,122,.35);border-radius:24px;padding:30px 22px}
+.error-icon{font-size:42px;margin-bottom:10px}
+.error-title{font-size:20px;font-weight:800;color:var(--red);margin-bottom:8px}
+.error-text{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:22px}
 
-@media(max-width:350px){
-    .card{padding:22px 16px 18px}
-}
-@media(prefers-reduced-motion:reduce){
-    .btn{transition:none}
-}
+.footer{margin-top:22px;font-size:12px;letter-spacing:.06em;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.container{animation:none}}
 </style>
 </head>
-
 <body>
 <div class="container">
 
-<div id="mainContainer">
-<div class="card">
+    <div class="logo"><img src="./assets/logo.png" alt="NIPEX"></div>
+    <h1>NIPEX LAG</h1>
+    <p class="tagline">Daily license key &bull; resets every day at 6:00 AM IST</p>
 
-    <div class="brand">
-        <div class="logo">
-            <img src="./assets/logo.png" alt="NIPEX" onerror="this.remove();this.parentNode.textContent='N'">
+    <div id="mainContainer">
+        <div class="card">
+            <div class="label">YOUR PUBLIC IP</div>
+            <div class="field" id="ipAddress">CONNECTING...</div>
+
+            <div class="label">YOUR LICENSE KEY</div>
+            <div class="field key" id="finalKey">SECURE FETCHING...</div>
+            <div class="reset">Key resets in <b id="countdown">--:--:--</b></div>
+
+            <button class="btn copy" id="copyBtn" onclick="copyKey()">COPY LICENSE KEY</button>
+            <button class="btn telegram" onclick="openTelegram()">JOIN TELEGRAM</button>
+
+            <div class="status" id="status">SYSTEM: CONNECTING</div>
+            <div id="error">Unable to connect to IP service.<br>Please check your internet connection.</div>
         </div>
-        <div>
-            <div class="brand-title">NIPEX LAG</div>
-            <div class="badge">Daily license</div>
+    </div>
+
+    <div id="bypassContainer">
+        <div class="error-card">
+            <div class="error-icon">🚫</div>
+            <div class="error-title">Bypass Detected</div>
+            <div class="error-text">Direct access is not allowed.<br>Please open this generator through the official steps.</div>
+            <button class="btn btn-red" onclick="location.href='steps.html'">RETURN TO STEPS</button>
         </div>
     </div>
 
-    <div class="subtitle">Secure license key generator.<br>Resets every day at 6:00 AM IST.</div>
-
-    <div class="label">Your public IP</div>
-    <div class="ip" id="ipAddress">CONNECTING...</div>
-
-    <div class="label">Your license key</div>
-    <div class="key-box">
-        <span id="finalKey">SECURE FETCHING...</span>
-    </div>
-
-    <button class="btn copy" id="copyBtn" onclick="copyKey()">Copy license key</button>
-    <button class="btn telegram" onclick="openTelegram()">Join Telegram</button>
-
-    <div class="status" id="status" data-state="busy">Connecting…</div>
-    <div id="error">Unable to connect to IP service.<br>Please check your internet connection.</div>
-
-</div>
-</div>
-
-<div id="bypassContainer">
-<div class="error-card">
-    <div class="error-icon">!</div>
-    <div class="error-title">Bypass detected</div>
-    <div class="error-text">
-        Direct access is not allowed.<br>
-        Please open this generator through the official steps.
-    </div>
-    <button class="btn btn-red" onclick="location.href='steps.html'">Return to steps</button>
-</div>
-</div>
-
-<div class="footer">NIPEX LAG Security System</div>
+    <div class="footer">&copy; NIPEX LAG</div>
 </div>
 
 <script>
-const IP_API="https://api.ipify.org?format=json";
-const TELEGRAM_LINK="https://t.me/nipex_lag";
-const KEY_YEAR=2026;
+const IP_API = "https://api.ipify.org?format=json";
+const TELEGRAM_LINK = "https://t.me/nipex_lag";
+const KEY_YEAR = 2026;
+const RESET_HOUR = 6;                      // 6 AM IST
+const CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
-/* Access gate */
-function checkSecurity(){
-    const params=new URLSearchParams(window.location.search);
-    const source=params.get("source");
-    const referrer=document.referrer || "";
-
-    const allowed =
-        source === "official" ||
-        referrer.includes("vplink.io") ||
-        referrer.includes("vplink.in") ||
-        referrer.includes("lootdest.org") ||
-        referrer.includes("steps.html");
-
-    if(!allowed){
-        document.getElementById("bypassContainer").style.display="block";
-        return;
-    }
-
-    if(source==="official"){
-        const clean=window.location.protocol+"//"+
-            window.location.host+window.location.pathname;
-        window.history.replaceState({},document.title,clean);
-    }
-
-    document.getElementById("mainContainer").style.display="block";
-    generateLockedKey();
-    scheduleDailyRefresh();
+// <key-engine>  (must stay identical to the Android app)
+function getIndiaTime(){
+    const parts = new Intl.DateTimeFormat("en-US",{
+        timeZone:"Asia/Kolkata",
+        year:"numeric",month:"2-digit",day:"2-digit",
+        hour:"2-digit",minute:"2-digit",second:"2-digit",
+        hourCycle:"h23"                    // 00-23 (never "24")
+    }).formatToParts(new Date());
+    const v = {};
+    parts.forEach(p => { if(p.type !== "literal") v[p.type] = Number(p.value); });
+    return {year:v.year, month:v.month, day:v.day, hour:v.hour, minute:v.minute, second:v.second};
 }
 
-/* Public IP */
+// Day number. The day changes at 6 AM IST.
+function getDailyCycle(){
+    const india = getIndiaTime();
+    let {year, month, day} = india;
+    if(india.hour < RESET_HOUR){
+        const prev = new Date(Date.UTC(year, month-1, day));
+        prev.setUTCDate(prev.getUTCDate() - 1);
+        year = prev.getUTCFullYear(); month = prev.getUTCMonth()+1; day = prev.getUTCDate();
+    }
+    return Math.floor(Date.UTC(year, month-1, day) / 86400000);
+}
+
+// NIPEX-XXXX-XXXX
+function generateKeyFromIP(ip){
+    let s = ip.replace(/\./g, "");
+    if(s.length > 6) s = s.substring(0, 6);
+    const digits = s.replace(/[^0-9]/g, "");
+    const ipSeed = digits ? parseInt(digits, 10) : 0;
+
+    let seed = ipSeed + getDailyCycle() + KEY_YEAR;
+    let key = "NIPEX-";
+    for(let g = 0; g < 2; g++){
+        if(g > 0) key += "-";
+        for(let i = 0; i < 4; i++){
+            const x = Math.sin(seed++) * 10000;
+            const frac = Math.abs(x - Math.floor(x));
+            key += CHARS.charAt(Math.floor(frac * CHARS.length));
+        }
+    }
+    return key;
+}
+// </key-engine>
+
+// Milliseconds until the next 6 AM IST
+function getMillisecondsUntilNextReset(){
+    const india = getIndiaTime();
+    let target = Date.UTC(india.year, india.month-1, india.day, 0, 30, 0);   // 06:00 IST = 00:30 UTC
+    if(india.hour >= RESET_HOUR) target += 86400000;
+    const delay = target - Date.now();
+    return delay < 1000 ? 1000 : delay;
+}
+
 async function getPublicIP(){
-    const response=await fetch(IP_API,{cache:"no-store"});
+    const response = await fetch(IP_API, {cache:"no-store"});
     if(!response.ok) throw new Error("IP request failed");
-    const data=await response.json();
+    const data = await response.json();
     if(!data.ip) throw new Error("IP not found");
     return data.ip.trim();
 }
 
-/* India time */
-function getIndiaTime(){
-    const parts=new Intl.DateTimeFormat("en-US",{
-        timeZone:"Asia/Kolkata",
-        year:"numeric",month:"2-digit",day:"2-digit",
-        hour:"2-digit",minute:"2-digit",second:"2-digit",
-        hour12:false
-    }).formatToParts(new Date());
+/* Access gate: only through the official steps */
+function checkSecurity(){
+    const params = new URLSearchParams(window.location.search);
+    const source = params.get("source");
+    const referrer = document.referrer || "";
 
-    const v={};
-    parts.forEach(p=>{
-        if(p.type!=="literal") v[p.type]=Number(p.value);
-    });
+    const allowed =
+        source === "official" ||
+        referrer.includes("vplink.in") ||
+        referrer.includes("vplink.io") ||
+        referrer.includes("lootdest.org") ||
+        referrer.includes("steps.html");
 
-    return {
-        year:v.year,month:v.month,day:v.day,
-        hour:v.hour,minute:v.minute,second:v.second
-    };
-}
-
-/* Daily cycle — reset 6 AM IST */
-function getDailyCycle(){
-    const india=getIndiaTime();
-    let {year,month,day}=india;
-
-    if(india.hour<6){
-        const previous=new Date(Date.UTC(year,month-1,day));
-        previous.setUTCDate(previous.getUTCDate()-1);
-        year=previous.getUTCFullYear();
-        month=previous.getUTCMonth()+1;
-        day=previous.getUTCDate();
+    if(!allowed){
+        document.getElementById("bypassContainer").style.display = "block";
+        return;
     }
-
-    return Math.floor(Date.UTC(year,month-1,day)/86400000);
-}
-
-/* Exact next 6 AM IST */
-function getMillisecondsUntilNextReset(){
-    const now=new Date();
-    const india=getIndiaTime();
-
-    let target=Date.UTC(
-        india.year,india.month-1,india.day,0,30,0
-    );
-
-    if(india.hour>=6) target+=86400000;
-
-    let delay=target-now.getTime();
-    return delay<1000?1000:delay;
-}
-
-/* Same key algorithm — NIPEX-XXXX-XXXX-XXXX-XXXX */
-function generateKeyFromIP(ip){
-    const day=getDailyCycle();
-
-    let cleanIP=ip.replace(/\./g,"");
-    if(cleanIP.length>6) cleanIP=cleanIP.substring(0,6);
-
-    const ipSeed=parseInt(cleanIP,10);
-    let seed=ipSeed+day+KEY_YEAR;
-
-    const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
-    let finalKey="NIPEX-";
-
-    for(let i=0;i<4;i++){
-        if(i>0) finalKey+="-";
-
-        for(let j=0;j<4;j++){
-            const x=Math.sin(seed++)*10000;
-            const random=Math.abs(x-Math.floor(x));
-            const index=Math.floor(random*chars.length);
-            finalKey+=chars.charAt(index);
-        }
+    if(source === "official"){
+        const clean = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({}, document.title, clean);
     }
-
-    return finalKey;
+    document.getElementById("mainContainer").style.display = "block";
+    generateLockedKey();
+    scheduleDailyRefresh();
+    startCountdown();
 }
 
 async function generateLockedKey(){
-    const keyEl=document.getElementById("finalKey");
-    const ipEl=document.getElementById("ipAddress");
-    const statusEl=document.getElementById("status");
-    const errorEl=document.getElementById("error");
+    const keyEl = document.getElementById("finalKey");
+    const ipEl = document.getElementById("ipAddress");
+    const statusEl = document.getElementById("status");
+    const errorEl = document.getElementById("error");
 
-    keyEl.innerText="SECURE FETCHING...";
-    ipEl.innerText="CONNECTING...";
-    statusEl.innerText="Getting your IP…";statusEl.dataset.state="busy";
-    errorEl.style.display="none";
+    keyEl.innerText = "SECURE FETCHING...";
+    ipEl.innerText = "CONNECTING...";
+    statusEl.innerText = "SYSTEM: GETTING IP";
+    errorEl.style.display = "none";
 
     try{
-        const ip=await getPublicIP();
-        ipEl.innerText=ip;
-        keyEl.innerText=generateKeyFromIP(ip);
-        statusEl.innerText="Key ready";statusEl.dataset.state="ok";
+        const ip = await getPublicIP();
+        ipEl.innerText = ip;
+        keyEl.innerText = generateKeyFromIP(ip);
+        statusEl.innerText = "SYSTEM: NIPEX LAG • KEY READY";
     }catch(e){
         console.error(e);
-        ipEl.innerText="UNAVAILABLE";
-        keyEl.innerText="CONNECT TO INTERNET";
-        statusEl.innerText="Offline";statusEl.dataset.state="error";
-        errorEl.style.display="block";
+        ipEl.innerText = "UNAVAILABLE";
+        keyEl.innerText = "CONNECT TO INTERNET";
+        statusEl.innerText = "SYSTEM: OFFLINE";
+        errorEl.style.display = "block";
     }
 }
 
 function scheduleDailyRefresh(){
-    setTimeout(async()=>{
+    setTimeout(async () => {
         await generateLockedKey();
         scheduleDailyRefresh();
-    },getMillisecondsUntilNextReset());
+    }, getMillisecondsUntilNextReset());
+}
+
+function startCountdown(){
+    const el = document.getElementById("countdown");
+    const pad = n => String(n).padStart(2, "0");
+    const tick = () => {
+        const s = Math.floor(getMillisecondsUntilNextReset() / 1000);
+        el.innerText = pad(Math.floor(s/3600)) + ":" + pad(Math.floor(s%3600/60)) + ":" + pad(s%60);
+    };
+    tick();
+    setInterval(tick, 1000);
 }
 
 async function copyKey(){
-    const key=document.getElementById("finalKey").innerText;
-    if(key.includes("SECURE")||key.includes("CONNECT")) return;
-
+    const key = document.getElementById("finalKey").innerText;
+    if(key.includes("SECURE") || key.includes("CONNECT")) return;
     try{
         await navigator.clipboard.writeText(key);
-        const btn=document.getElementById("copyBtn");
-        btn.innerText="Copied ✓";btn.classList.add("done");
-        setTimeout(()=>{btn.innerText="Copy license key";btn.classList.remove("done")},1800);
+        const btn = document.getElementById("copyBtn");
+        btn.innerText = "COPIED SUCCESSFULLY ✓";
+        setTimeout(() => btn.innerText = "COPY LICENSE KEY", 1800);
     }catch(e){
         alert("Copy failed. Please copy the key manually.");
     }
 }
 
-function openTelegram(){
-    window.location.href=TELEGRAM_LINK;
-}
+function openTelegram(){ window.location.href = TELEGRAM_LINK; }
 
-window.addEventListener("load",checkSecurity);
+window.addEventListener("load", checkSecurity);
 </script>
 </body>
 </html>
